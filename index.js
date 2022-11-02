@@ -4,7 +4,7 @@ const app= express()
 const port= process.env.PORT || 5000;
 
 app.use(express.json())
-app.cors(cors())
+app.use(cors())
 
 app.get('/',(req,res)=>{
     res.send('genius car server running')
