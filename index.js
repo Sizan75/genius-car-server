@@ -13,6 +13,12 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run(){
 try{
     const serviceCollection = client.db('geniusCar').collection('services')
+    app.get('/services',async(req,res)=>{
+        const query={}
+        const cursor= serviceCollection.find(query)
+        const services= await cursor.toArray();
+        res.send(services)
+    })
 }
 finally{
 
@@ -28,4 +34,5 @@ app.get('/',(req,res)=>{
 
 app.listen(port, ()=>{
     console.log(`genius car server running in port ${port}` )
+
 })
